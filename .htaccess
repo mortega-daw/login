@@ -1,0 +1,12 @@
+Options -Multiviews
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /php-login/
+
+# If the request is not for a valid file or directory
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# Redirect to PHP file if it exists
+RewriteCond %{REQUEST_URI} ^/php-login/(.+)$
+RewriteCond %{DOCUMENT_ROOT}/php-login/%1.php -f
+RewriteRule ^(.+)$ /php-login/$1.php [L]
